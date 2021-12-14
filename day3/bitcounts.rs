@@ -1,15 +1,11 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 use std::convert::TryInto;
 
 fn main() {
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
     //let wid : usize = 5;
     let wid : usize = 12;
-    let rdr = BufReader::new(file);
     let mut inp : Vec<i32> = Vec::new();
-    for line in rdr.lines() {
+    for line in io::stdin().lock().lines() {
         // each line has '<bit>*12'
         let txt = line.unwrap();
         let val = i32::from_str_radix(&txt,2).unwrap();

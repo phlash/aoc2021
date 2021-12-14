@@ -1,15 +1,11 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 fn main() {
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
     // we push opening chars to the stack, pop closing chars and check for a match
     let mut stack : Vec<u8> = Vec::new();
     let mut part1 : usize = 0;
     let mut part2 : Vec<usize> = Vec::new();
-    for line in rdr.lines() {
+    for line in io::stdin().lock().lines() {
         let txt = line.unwrap();
         let bytes = txt.as_bytes();
         for p in 0..bytes.len() {

@@ -1,12 +1,8 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 fn main() {
     let mut vents : [i32; 1000000] = [0; 1000000];     // by examination we see floor is 1000x1000 units
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
-    for line in rdr.lines() {
+    for line in io::stdin().lock().lines() {
         let txt = line.unwrap();
         // each line is a co-ordinate pair: <x>,<y> -> <x>,<y>
         let pair : Vec<&str> = txt.split(" -> ").collect();

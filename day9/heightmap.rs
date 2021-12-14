@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 fn basin_size(hmap : &Vec<Vec<usize>>, sx : usize, sy : usize) -> usize {
     // basically a floodfill algorithm, but terminated by map edge or height==9
@@ -91,11 +90,8 @@ fn basin_size(hmap : &Vec<Vec<usize>>, sx : usize, sy : usize) -> usize {
 }
 
 fn main() {
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
     let mut hmap : Vec<Vec<usize>> = Vec::new();
-    for line in rdr.lines() {
+    for line in io::stdin().lock().lines() {
         let txt = line.unwrap();
         // each line is a row in the heightmap, values 0-9
         let mut r : Vec<usize> = Vec::new();

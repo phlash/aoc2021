@@ -1,14 +1,11 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 fn main() {
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
     let mut hoz : i32 = 0;
     let mut de1 : i32 = 0;
     let mut de2 : i32 = 0;
     let mut aim : i32 = 0;
-    for (idx,line) in rdr.lines().enumerate() {
+    for line in io::stdin().lock().lines() {
         // each line has '<command> <distance>'
         let txt = line.unwrap();
         let vals : Vec<&str> = txt.split_whitespace().collect();

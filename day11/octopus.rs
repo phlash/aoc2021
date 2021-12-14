@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 fn printoct(octos : &[[usize;10];10]) {
     for y in 0..octos.len() {
@@ -8,11 +7,8 @@ fn printoct(octos : &[[usize;10];10]) {
 }
 
 fn main() {
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
     let mut octos : [[usize;10];10] = [[0;10];10];
-    let rdr = BufReader::new(file);
-    for (idx,line) in rdr.lines().enumerate() {
+    for (idx,line) in io::stdin().lock().lines().enumerate() {
         let txt = line.unwrap();
         let bytes = txt.as_bytes();
         for p in 0..bytes.len() {

@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 struct BingoCard {
     // a 5x5 bingo card, values and hits
@@ -58,14 +57,11 @@ fn score_card(card : &BingoCard, v : i32) -> i32 {
 }
 
 fn main() {
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
     let mut calls : Vec<i32> = Vec::new();
     let mut cards : Vec<BingoCard> = Vec::new();
     let mut card : BingoCard = new_card();
     let mut cnt : usize = 0;
-    for (idx,line) in rdr.lines().enumerate() {
+    for (idx,line) in io::stdin().lock().lines().enumerate() {
         let txt = line.unwrap();
         // first line is the caller's list
         if 0==idx {

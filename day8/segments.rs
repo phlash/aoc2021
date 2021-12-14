@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 /* 7-segment display patterns, based on:
   0:      1:      2:      3:      4:
@@ -101,9 +100,6 @@ fn map_to_bits(pat : &str) -> [bool;7] {
 }
 
 fn main() {
-    //let file = File::open("test").unwrap();
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
     let mut perms : Vec<[usize;7]> = Vec::new();
     // generate all possible wiring permutations for Part 2, we use Heap's Algorithm
     generate(7, &mut [0,1,2,3,4,5,6], &mut perms);
@@ -112,7 +108,7 @@ fn main() {
     let mut cnt : usize = 0;
     // total for Part 2
     let mut total : usize = 0;
-    for (idx,line) in rdr.lines().enumerate() {
+    for (idx,line) in io::stdin().lock().lines().enumerate() {
         let txt = line.unwrap();
         // each line consists of: <unique patterns>{10} | <digit>{4}
         // where <unique pattern> & <digit> are segment lists: <a-g>{1,7}

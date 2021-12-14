@@ -1,15 +1,12 @@
-use std::fs::File;
-use std::io::{BufRead,BufReader};
+use std::io::{self,BufRead};
 
 fn main() {
-    let file = File::open("input").unwrap();
-    let rdr = BufReader::new(file);
     let mut win : [i32; 3] = [0, 0, 0];
     let mut prv : i32 = 0;
     let mut prw : i32 = 0;
     let mut cnv : i32 = 0;
     let mut cnw : i32 = 0;
-    for (idx,line) in rdr.lines().enumerate() {
+    for (idx,line) in io::stdin().lock().lines().enumerate() {
         let val : i32 = line.unwrap().parse().unwrap();
         // populate the window
         win[idx%3] = val;
