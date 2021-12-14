@@ -49,7 +49,6 @@ fn route(visited : &mut Vec<String>, has_two : bool, caves : &HashMap<String, Ca
 fn main() {
     // our cave system to explore..
     let mut caves : HashMap<String, Cave> = HashMap::new();
-    // gonna read from stdin this time.. easier to try multiple test inputs
     for line in io::stdin().lock().lines() {
         let txt = line.unwrap();
         let pair : Vec<&str> = txt.split('-').collect();
