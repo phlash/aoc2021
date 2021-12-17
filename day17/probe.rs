@@ -38,6 +38,11 @@ fn main() {
     let xx : isize = target.0.1;
     // minimum y-velocity is target lower edge, or we exceed after one step
     let my : isize = target.1.0;
+    // by way of some algebra, we note that y position always returns to zero
+    // at a particular step (2<n>+1 where n=y-velocity), and that the next step
+    // must not exceed the lower edge of the target area, where:
+    // step-size = <n>-2<n>-1 => -<n>-1, thus:
+    let xy : isize = -target.1.0+1;
 
     // OK: we have minimums.. now we are looking for maximum y value attainable
     // - search increasing values for y-velocity until we miss the target
@@ -49,7 +54,7 @@ fn main() {
     let mut hvy : isize = 0;
     let mut hits : usize = 0;
     for sx in mx..xx+1 {
-        for sy in my..-target.1.0*2 {
+        for sy in my..xy {
             if simulate(sx, sy, target, &mut hy, &mut hvx, &mut hvy) {
                 println!("hit@({},{})", sx, sy);
                 hits += 1;
