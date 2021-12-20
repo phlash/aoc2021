@@ -107,9 +107,9 @@ fn main() {
         for scan in 1..input.len() {
             // skip if done
             if input[scan].len()==0 { continue; }
-            // find orientation from matched pairs
+            // brute search orientation & offset
             let orient = find_orientation(&map, &input[scan]);
-            println!("done: {} scan: {} orient: {:?}", done, scan, orient);
+            println!("done: {}/{} scan: {} orient: {:?}", done, input.len(), scan, orient);
             if orient.1<12 { continue; }
             // merge beacons
             for b in 0..input[scan].len() {
