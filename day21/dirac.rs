@@ -41,7 +41,7 @@ fn part2() {
     splits.entry(7).or_insert(6);
     splits.entry(8).or_insert(3);
     splits.entry(9).or_insert(1);
-    // keep iterating until we get a winner
+    // keep iterating until we get winners for all game states
     let mut turn : bool = false;
     let mut wins : [u64; 2] = [0,0];
     loop {
