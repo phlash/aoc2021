@@ -1,0 +1,54 @@
+// I got help: https://github.com/dphilipson/advent-of-code-2021/blob/master/src/days/day24.rs
+
+check, offset
+10, 0
+12, 6
+13, 4
+13, 2
+14, 9
+-2, 1
+11, 10
+-15, 6
+-10, 4
+10, 6
+-10, 3
+-4, 9
+-1, 15
+-1, 5
+
+push input[0]+0
+push input[1]+6
+push input[2]+4
+push input[3]+2
+push input[4]+9
+pop input[5] == value - 2   => input[5] == input[4]+7
+push input[6]+10
+pop input[7] == value - 15  => input[7] == input[6]-5
+pop input[8] == value - 10  => input[8] == input[3]-8
+push input[9]+6
+pop input[10] == value - 10 => input[10] == input[9]-4
+pop input[11] == value - 4  => input[11] == input[2]
+pop input[12] == value - 1  => input[12] == input[1]+5
+pop input[13] == value - 1  => input[13] == input[0]-1
+
+Maximum value
+input[0] = 9  input[13] = 8
+input[1] = 4  input[12] = 9
+input[2] = 9  input[11] = 9
+input[3] = 9  input[8]  = 1
+input[4] = 2  input[5]  = 9
+input[6] = 9  input[7]  = 4
+input[9] = 9  input[10] = 5
+
+94992994195998
+
+Minimum value
+input[0] = 2  input[13] = 1
+input[1] = 1  input[12] = 6
+input[2] = 1  input[11] = 1
+input[3] = 9  input[8]  = 1
+input[4] = 1  input[5]  = 8
+input[6] = 6  input[7]  = 1
+input[9] = 5  input[10] = 1
+
+21191861151161
